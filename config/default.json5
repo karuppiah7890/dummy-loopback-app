@@ -1,0 +1,7 @@
+{
+  "log": {
+    "application_log_dir": "dummy-loopback-app-data/logs",
+    "application_log_filename": "application.log",
+    "application_log_rotate_file_format": "application-%DATE%.log"
+  }
+}
