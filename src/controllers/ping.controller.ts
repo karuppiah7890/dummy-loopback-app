@@ -1,5 +1,4 @@
 import {inject} from '@loopback/core';
-import {LoggingBindings, WinstonLogger} from '@loopback/logging';
 import {
   Request,
   ResponseObject,
@@ -7,7 +6,7 @@ import {
   get,
   response,
 } from '@loopback/rest';
-import {PingService} from '../services';
+import {LoggingService, PingService} from '../services';
 
 /**
  * OpenAPI response for ping()
@@ -42,9 +41,8 @@ const PING_RESPONSE: ResponseObject = {
 export class PingController {
   pingService: PingService;
 
-  // Inject a winston logger
-  @inject(LoggingBindings.WINSTON_LOGGER)
-  private logger: WinstonLogger;
+  @inject("services.LoggingService")
+  private logger: LoggingService;
 
   constructor(
     @inject(RestBindings.Http.REQUEST) private req: Request,

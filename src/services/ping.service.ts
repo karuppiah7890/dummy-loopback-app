@@ -1,11 +1,10 @@
 import {BindingScope, inject, injectable} from '@loopback/core';
-import {LoggingBindings, WinstonLogger} from '@loopback/logging';
+import {LoggingService} from './logging.service';
 
-@injectable({ scope: BindingScope.TRANSIENT })
+@injectable({ scope: BindingScope.SINGLETON })
 export class PingService {
-  // Inject a winston logger
-  @inject(LoggingBindings.WINSTON_LOGGER)
-  private logger: WinstonLogger;
+  @inject("services.LoggingService")
+  private logger: LoggingService;
 
   ping() {
     this.logger.info("ping service method successful!")
